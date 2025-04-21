@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tugas Praktikum Pemrograman Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary-green: #46b04b;
+      --light-green: #d4fcd2;
+      --dark-teal: #00e3c5;
+      --nav-bg: rgb(61, 104, 80);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: var(--light-green);
+      color: #202020;
+    }
+    .centered {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 10px;
+    }
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: var(--primary-green);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: var(--dark-teal);
+    }
+    .sidenav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 100%;
+      background-color: var(--nav-bg);
+      padding-top: 60px;
+    }
+    .sidenav a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .sidenav a:hover {
+      background-color: #c1fff1;
+      color: var(--primary-green);
+    }
+    .content {
+      margin-left: 200px;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 40px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    section h2 {
+      color: var(--primary-green);
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #cccccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--dark-teal);
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    img {
+      max-width: 100px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Halaman Awal -->
+  <div id="landing" class="centered">
+    <h1>Tugas Praktikum Pemrograman Web</h1>
+    <h2>Miftah Riana Putri</h2>
+    <h3>2303015072 - 4B</h3>
+    <button class="button" onclick="enterSite()">Masuk</button>
+  </div>
+
+  <!-- Halaman Konten -->
+  <div id="main" style="display: none;">
+    <div class="sidenav">
+      <a href="#" onclick="loadContent('home')">Beranda</a>
+      <a href="#" onclick="loadContent('pertemuan2')">Pertemuan 2</a>
+      <a href="#" onclick="loadContent('pertemuan4')">Pertemuan 4</a>
+      <a href="#" onclick="goBack()">Keluar</a>
+    </div>
+    <div class="content" id="contentArea"></div>
+  </div>
+
+  <script>
+    function enterSite() {
+      document.getElementById('landing').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+      loadContent('home');
+    }
+
+    function goBack() {
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('landing').style.display = 'flex';
+    }
+
+    function loadContent(page) {
+      const content = {
+        home: `
+          <section>
+            <h2>Selamat datang di Tugas Praktikum Pemrograman Web :)</h2>
+            <p>Haiii! Saya <strong>Miftah Riana Putri</strong>, NIM <strong>2303015072</strong> dari kelas <strong>4B</strong>.<br>
+            Silahkan pilih menu di samping untuk melihat materi praktikum.</p>
+          </section>
+        `,
+        pertemuan2: `
+          <section>
+            <h2>Pertemuan 2</h2>
+            <table>
+              <tr><th>NIM</th><th>Nama Lengkap</th><th>Foto</th></tr>
+              <tr><td>2303015072</td><td>Miftah Riana</td><td><img src="images/miftah.jpg" /></td></tr>
+              <tr><td>2303015072</td><td>Miftah Riana</td><td><img src="images/miftah.jpg" /></td></tr>
+            </table>
+          </section>
+        `,
+        pertemuan4: `
+          <section><h2>Latihan 1</h2>
+            <form><label>Username:</label><input type="text"><br><label>Password:</label><input type="password"><br><input type="submit" value="Login"></form>
+          </section>
+          <section><h2>Latihan 2</h2>
+            <form><label>Nama:</label><input type="text" value="Miftah"><br><label>Subject:</label><input type="text" value="Bertanya..."><br><label>Email:</label><input type="email"><br><input type="submit" value="Send"></form>
+          </section>
+          <section><h2>Latihan 3</h2>
+            <form>
+              <label>Nama:</label><input type="text"><br>
+              <label>Username:</label><input type="text"><br>
+              <label>Email:</label><input type="email"><br>
+              <label>Password:</label><input type="password"><br>
+              <label>Jenis Kelamin:</label><input type="radio" name="gender"> Laki-laki <input type="radio" name="gender"> Perempuan<br>
+              <label>Agama:</label><select><option>Islam</option></select><br>
+              <label>Biografi:</label><textarea></textarea><br>
+              <input type="submit" value="Daftar">
+            </form>
+          </section>
+          <section><h2>Latihan 4</h2>
+            <table>
+              <tr><th>Company</th><th>Contact</th><th>Country</th></tr>
+              <tr><td>Alfreds Futterkiste</td><td>Maria Anders</td><td>Germany</td></tr>
+              <tr><td>Centro comercial Moctezuma</td><td>Francisco Chang</td><td>Mexico</td></tr>
+              <tr><td>Ernst Handel</td><td>Roland Mendel</td><td>Austria</td></tr>
+              <tr><td>Island Trading</td><td>Helen Bennett</td><td>UK</td></tr>
+              <tr><td>Laughing Bacchus Winecellars</td><td>Yoshi Tannamuri</td><td>Canada</td></tr>
+              <tr><td>Magazzini Alimentari Riuniti</td><td>Giovanni Rovelli</td><td>Italy</td></tr>
+            </table>
+          </section>
+          <section><h2>Latihan 5</h2>
+            <table>
+             <table>
+  <tr>
+    <th>NIM</th>
+    <th>Nama</th>
+    <th>Universitas</th>
+    <th>Fakultas</th>
+    <th>Jurusan</th>
+    <th>Foto</th>
+  </tr>
+  <tr>
+    <td>2303015072</td>
+    <td>Miftah Riana Putri</td>
+    <td>Universitas Muhammadiyah Prof Dr Hamka</td>
+    <td>Fakultas Teknik</td>
+    <td>Teknik Informatika</td>
+    <td><img src="images/miftah.jpg" /></td>
+  </tr>
+  <tr>
+    <td>2303015052</td>
+    <td>Najwa Habibah</td>
+    <td>Universitas Muhammadiyah Prof Dr Hamka</td>
+    <td>Fakultas Kedokteran</td>
+    <td>Kedokteran Umum</td>
+    <td><img src="images/n.jpg" /></td>
+  </tr>
+  <tr>
+    <td>2303015099</td>
+    <td>Ahmad Fadli</td>
+    <td>Universitas Muhammadiyah Prof Dr Hamka</td>
+    <td>Fakultas Ekonomi</td>
+    <td>Manajemen</td>
+    <td><img src="images/fdl.jpg" /></td>
+  </tr>
+  <tr>
+    <td>2303015088</td>
+    <td>Intan Permata Sari</td>
+    <td>Universitas Muhammadiyah Prof Dr Hamka</td>
+    <td>Fakultas Keguruan dan Ilmu Pendidikan</td>
+    <td>Pendidikan Bahasa Inggris</td>
+    <td><img src="images/intn.jpg" /></td>
+  </tr>
+  <tr>
+    <td>2303015044</td>
+    <td>Rizki Maulana</td>
+    <td>Universitas Muhammadiyah Prof Dr Hamka</td>
+    <td>Fakultas Teknik</td>
+    <td>Sistem Informasi</td>
+    <td><img src="images/rzk.jpg" /></td>
+  </tr>
+  <tr>
+    <td>2303015033</td>
+    <td>Salsabila Zahra</td>
+    <td>Universitas Muhammadiyah Prof Dr Hamka</td>
+    <td>Fakultas Psikologi</td>
+    <td>Psikologi</td>
+    <td><img src="images/zhr.jpg" /></td>
+  </tr>
+</table>
+        `
+      };
+      document.getElementById('contentArea').innerHTML = content[page] || '';
+    }
+  </script>
+</body>
+</html>
